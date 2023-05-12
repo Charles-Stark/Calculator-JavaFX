@@ -1,0 +1,21 @@
+.pane {
+    -fx-background-color: linear-gradient(to bottom right, #FF7F50, #6A5ACD);
+}
+
+.labelAnswer {
+    -fx-font-size: 23px;
+}
+
+.labelResult {
+    -fx-font-size: 60px;
+}
+
+.button {
+    -fx-background-radius: 15;
+    -fx-background-color: #00000025;
+    -fx-font-size: 35px;
+}
+
+.button:pressed {
+    -fx-background-color: #00000070;
+}

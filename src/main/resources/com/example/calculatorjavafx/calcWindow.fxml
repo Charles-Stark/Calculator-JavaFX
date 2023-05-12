@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="610.0" prefWidth="460.0"
+            styleClass="pane" stylesheets="@windowStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculatorjavafx.CalcController">
+    <VBox layoutX="180.0" layoutY="175.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+          prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="481.0"
+                  prefWidth="460.0" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" percentHeight="16.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+            <padding>
+                <Insets bottom="9.0" left="9.0" right="9.0" top="6.0"/>
+            </padding>
+            <Label fx:id="labelAnswer" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308"
+                   maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="460.0" styleClass="labelAnswer"
+                   GridPane.columnSpan="2147483647">
+                <padding>
+                    <Insets left="35.0" right="35.0"/>
+                </padding>
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+                <font>
+                    <Font size="23.0"/>
+                </font>
+            </Label>
+            <Label fx:id="labelResult" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308"
+                   maxWidth="1.7976931348623157E308" prefHeight="91.0" prefWidth="460.0" styleClass="labelResult"
+                   text="0" textAlignment="RIGHT" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                <padding>
+                    <Insets bottom="5.0" left="35.0" right="35.0"/>
+                </padding>
+                <font>
+                    <Font size="60.0"/>
+                </font>
+            </Label>
+            <Button fx:id="btnLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onLeftClicked" styleClass="button" text="("
+                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnRight" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onRightClicked" styleClass="button" text=")"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnRoot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onRootClicked" styleClass="button" text="√"
+                    GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnClear" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onClearClicked" styleClass="button" text="AC"
+                    GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="7"
+                    GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="8"
+                    GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="9"
+                    GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnDivide" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onSymbolClicked" styleClass="button" text="÷"
+                    GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="4"
+                    GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="5"
+                    GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="6"
+                    GridPane.columnIndex="2" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnMultiply" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onSymbolClicked" styleClass="button" text="×"
+                    GridPane.columnIndex="3" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="1"
+                    GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="2"
+                    GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onNumberClicked" styleClass="button" text="3"
+                    GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnMinus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onSymbolClicked" styleClass="button" text="-"
+                    GridPane.columnIndex="3" GridPane.rowIndex="5">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btn0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onZeroClicked" styleClass="button" text="0"
+                    GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnDot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onDotClicked" styleClass="button" text="."
+                    GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnEqual" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onEqualClicked" styleClass="button" text="="
+                    GridPane.columnIndex="2" GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnPlus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    mnemonicParsing="false" onMouseReleased="#onSymbolClicked" styleClass="button" text="+"
+                    GridPane.columnIndex="3" GridPane.rowIndex="6">
+                <GridPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                </GridPane.margin>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Button>
+        </GridPane>
+    </VBox>
+</AnchorPane>
