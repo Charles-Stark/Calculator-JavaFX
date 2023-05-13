@@ -41,7 +41,7 @@ public class CalcController {
             if (state == State.EQUAL) {
                 labelAnswer.setText("Ans = " + labelResult.getText());
             }
-            labelResult.setText(labelResult.getText().equals("Error") || labelResult.getText().equals("Infinite") || labelResult.getText().equals("NaN") ? value : labelResult.getText() + value);
+            labelResult.setText(labelResult.getText().equals("Error") || labelResult.getText().equals("Infinite") || labelResult.getText().equals("NaN") || labelResult.getText().equals("0") ? value : labelResult.getText() + value);
         } else {
             return;
         }
