@@ -404,6 +404,7 @@ public class CalcController {
         // 创建一个按钮，用于关闭对话框
         ButtonType closeButton = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(closeButton);
+        dialog.setResizable(true);
 
         // 创建一个ListView用于显示历史记录
         ListView<String> listView = new ListView<>();
@@ -412,16 +413,21 @@ public class CalcController {
 
         // 监听ListView中的鼠标点击事件，当用户点击某一条历史记录时，将其显示在主窗口上
         listView.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getClickCount() == 1 && !historyList.isEmpty()) {
-                String selectedHistory = listView.getSelectionModel().getSelectedItem();
-                labelAnswer.setText(selectedHistory.split("=")[0]);
-                labelResult.setText(selectedHistory.split("=")[1]);
-                btnClear.setText("AC");
-                state = State.EQUAL;
-                dotted = labelResult.getText().contains(".");
-                leftBracketCount = 0;
-                dialog.close();
+            try {
+                if (mouseEvent.getClickCount() == 1 && !historyList.isEmpty()) {
+                    String selectedHistory = listView.getSelectionModel().getSelectedItem();
+                    labelAnswer.setText(selectedHistory.split("=")[0]);
+                    labelResult.setText(selectedHistory.split("=")[1]);
+                    btnClear.setText("AC");
+                    state = State.EQUAL;
+                    dotted = labelResult.getText().contains(".");
+                    leftBracketCount = 0;
+                    dialog.close();
+                }
+            } catch (Exception ignored) {
+
             }
+
         });
 
         // 显示对话框
