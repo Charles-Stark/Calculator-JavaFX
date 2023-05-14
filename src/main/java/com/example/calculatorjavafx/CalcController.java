@@ -402,7 +402,7 @@ public class CalcController {
         dialog.setTitle("History");
 
         // 创建一个按钮，用于关闭对话框
-        ButtonType closeButton = new ButtonType("关闭", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType closeButton = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(closeButton);
 
         // 创建一个ListView用于显示历史记录
@@ -412,7 +412,7 @@ public class CalcController {
 
         // 监听ListView中的鼠标点击事件，当用户点击某一条历史记录时，将其显示在主窗口上
         listView.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getClickCount() == 2) {
+            if (mouseEvent.getClickCount() == 1 && !historyList.isEmpty()) {
                 String selectedHistory = listView.getSelectionModel().getSelectedItem();
                 labelAnswer.setText(selectedHistory.split("=")[0]);
                 labelResult.setText(selectedHistory.split("=")[1]);
