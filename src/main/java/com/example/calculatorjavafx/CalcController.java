@@ -1,7 +1,6 @@
 package com.example.calculatorjavafx;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +28,8 @@ public class CalcController {
     private int leftBracketCount = 0;
 
     private boolean dotted = false;
+
+    List<String> historyList = new ArrayList<>();
 
     public void onNumberClicked(MouseEvent mouseEvent) {
         // 当数字（不含0）被按下时
@@ -114,6 +115,8 @@ public class CalcController {
         state = State.EQUAL;
         dotted = labelResult.getText().contains(".");
         leftBracketCount = 0;
+
+        historyList.add(labelAnswer.getText() + labelResult.getText());
     }
 
     public void onClearClicked() {
@@ -168,6 +171,8 @@ public class CalcController {
         state = State.EQUAL;
         dotted = labelResult.getText().contains(".");
         leftBracketCount = 0;
+
+        historyList.add(labelAnswer.getText() + labelResult.getText());
     }
 
     public void onDotClicked() {
@@ -198,7 +203,7 @@ public class CalcController {
 
     public void onLeftClicked() {
         // 当左括号被按下
-        if (state == State.NUMBER || state == State.DOT || state == State.RIGHT) {
+        if (state == State.NUMBER || state == State.DOT || state == State.RIGHT || state == State.EQUAL) {
             return;
         }
         if (labelResult.getText().equals("Error") || labelResult.getText().equals("Infinite") || labelResult.getText().equals("NaN")) {
@@ -249,13 +254,12 @@ public class CalcController {
                 stack.push(item);  // 数字直接入栈
             } else {
                 try {
-                    double d1 = Double.parseDouble(stack.pop()), d2 = Double.parseDouble(stack.pop());
+                    BigDecimal d1 = new BigDecimal(stack.pop()), d2 = new BigDecimal(stack.pop());
                     switch (item) {  // 若为运算符，则出栈并计算
-                        case "+" -> stack.push(String.valueOf(BigDecimal.valueOf(d1).add(BigDecimal.valueOf(d2))));
-                        case "-" -> stack.push(String.valueOf(BigDecimal.valueOf(d2).subtract(BigDecimal.valueOf(d1))));
-                        case "×" -> stack.push(String.valueOf(BigDecimal.valueOf(d1).multiply(BigDecimal.valueOf(d2))));
-                        case "÷" ->
-                                stack.push(String.valueOf(BigDecimal.valueOf(d2).divide(BigDecimal.valueOf(d1), 9, RoundingMode.HALF_UP)));
+                        case "+" -> stack.push(String.valueOf(d1.add(d2)));
+                        case "-" -> stack.push(String.valueOf(d2.subtract(d1)));
+                        case "×" -> stack.push(String.valueOf(d1.multiply(d2)));
+                        case "÷" -> stack.push(String.valueOf(d2.divide(d1, 9, RoundingMode.HALF_UP)));
                     }
                 } catch (ArithmeticException arithmeticException) {
                     return "Infinite";
@@ -383,6 +387,7 @@ public class CalcController {
             case "(" -> onLeftClicked();
             case ")" -> onRightClicked();
             case "R" -> onRootClicked();
+            case "H" -> onHistoryClicked();
             default -> {
                 switch (code) {
                     case "ENTER" -> onEqualClicked();
@@ -390,6 +395,37 @@ public class CalcController {
                 }
             }
         }
+    }
+
+    private void onHistoryClicked() {
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("History");
+
+        // 创建一个按钮，用于关闭对话框
+        ButtonType closeButton = new ButtonType("关闭", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(closeButton);
+
+        // 创建一个ListView用于显示历史记录
+        ListView<String> listView = new ListView<>();
+        listView.getItems().addAll(historyList);
+        dialog.getDialogPane().setContent(listView);
+
+        // 监听ListView中的鼠标点击事件，当用户点击某一条历史记录时，将其显示在主窗口上
+        listView.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getClickCount() == 2) {
+                String selectedHistory = listView.getSelectionModel().getSelectedItem();
+                labelAnswer.setText(selectedHistory.split("=")[0]);
+                labelResult.setText(selectedHistory.split("=")[1]);
+                btnClear.setText("AC");
+                state = State.EQUAL;
+                dotted = labelResult.getText().contains(".");
+                leftBracketCount = 0;
+                dialog.close();
+            }
+        });
+
+        // 显示对话框
+        dialog.showAndWait();
     }
 
 }
